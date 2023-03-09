@@ -1,0 +1,3 @@
+command alias reload_lldb_script command script import lldb_tool/lldb_script.py
+reload_lldb_script
+command script import lldb_tool/official_gdb_script.py
