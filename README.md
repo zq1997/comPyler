@@ -23,6 +23,8 @@ It is not recommended to use the LLVM libraries from the Ubuntu repository, beca
   tar -axf llvm-project-14.0.6.src.tar.xz
   ```
 
+- Depending on the system, some dependent packages need to be installed to successfully compile LLVM. For this, please refer to LLVM's official documentation or some other blogs.
+
 - run cmake
 
   ```sh
@@ -66,6 +68,8 @@ Otherwise, build CPython from source
   tar -axf Python-3.10.10.tar.xz
   ```
 
+- Building CPython from source also requires some dependencies, please refer to the official guide.
+
 - build it
 
   ```sh
@@ -88,12 +92,13 @@ Otherwise, build CPython from source
 - run cmake
 
   ```sh
-  cmake -B ./comPyler-build -S ./comPyler -DCMAKE_BUILD_TYPE=Release \
+  cmake -B ./comPyler-build -S ./comPyler -DCMAKE_BUILD_TYPE=Release -DDIST=ON \
   	-DLLVM_ROOT=./llvm-install \
   	-DCPYTHON_EXE=./CPython-install/bin/python3.10 \
   	-DCMAKE_C_COMPILER=$(pwd)/llvm-install/bin/clang -DCMAKE_CXX_COMPILER=$(pwd)/llvm-install/bin/clang++
   ```
 
+  - `-DCMAKE_BUILD_TYPE=Release -DDIST=ON`. Build for distribution, this includes enabling PGO.
   - `-DLLVM_ROOT=./llvm-install`. Specify the directory where LLVM was installed
   - `-DCPYTHON_EXE=./CPython-install/bin/python3.10`. Specify the path to Python 3.10
   - `-DCMAKE_C_COMPILER=$(pwd)/llvm-install/bin/clang -DCMAKE_CXX_COMPILER=$(pwd)/llvm-install/bin/clang++`.
